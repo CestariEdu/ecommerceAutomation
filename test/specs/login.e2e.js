@@ -34,6 +34,13 @@ describe('My Login application', () => {
         expect(LoginPage.alert).toHaveTextContaining(
             'Password is required.');
     });
+
+    it('try login with invalid password', () => {
+        LoginPage.login('tomsmith@mailinator.com', '123456');
+        expect(LoginPage.alert).toBeExisting();
+        expect(LoginPage.alert).toHaveTextContaining(
+            'Authentication failed.');
+    });
 });
 
 

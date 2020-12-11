@@ -28,6 +28,13 @@ Scenario: try login without password
     And click in submit button
     Then should return alert with message "Password is required."
 
+Scenario: try login with invalid password
+    Given I have an invalid password
+    When I open login page
+    And only insert email
+    And click in submit button
+    Then should return alert with message "Authentication failed."
+
 ## Register
 
 Scenario: try register with invalid email
