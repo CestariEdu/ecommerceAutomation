@@ -1,0 +1,72 @@
+## Login
+
+Scenario: should login with valid credentials
+    Given I have a valid credentials
+    When I open login page
+    And insert credentials
+    And click in submit button
+    Then should redirect to accounte page
+
+Scenario: try login with invalid email
+    Given I have a username
+    When I open login page
+    And insert username
+    And click in submit button
+    Then should return alert with message "Authentication failed."
+
+Scenario: try login without email
+    Given I don't have an email
+    When I open login page
+    And only insert password
+    And click in submit button
+    Then should return alert with message "An email address required."
+
+Scenario: try login without password
+    Given I don't have a password
+    When I open login page
+    And only insert email
+    And click in submit button
+    Then should return alert with message "Password is required."
+
+## Register
+
+Scenario: try register with invalid email
+    Given I have a username
+    When I open login page
+    And only insert username into create area
+    And click in create button
+    Then should return alert with message "Invalid email address."
+
+Scenario: try register without password
+    Given I don't have a password
+    When I open login page
+    And only insert email into create area
+    And click in create button
+    And input all data except password
+    And click in submit
+    Then should return alert with message "passwd is required."
+
+Scenario: try register with invalid password
+    Given I have a invalid password
+    When I open login page
+    And only insert email into create area
+    And click in create button
+    And input all data with invalid password
+    And click in submit
+    Then should return alert with message "passwd is invalid."
+
+Scenario: try register with registered email
+    Given I have a registered email
+    When I open login page
+    And only insert a registered email into create area
+    And click in create button
+    Then should return alert with message "An account using this email address has already been registered. Please enter a valid password or request a new one."
+
+Scenario: should register with valid email
+    Given I have all valid data
+    When I open login page
+    And only insert email into create area
+    And click in create button
+    And input all data
+    And click in submit
+    Then should redirect to accounte page
